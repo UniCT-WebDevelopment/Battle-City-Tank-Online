@@ -34,4 +34,4 @@ $ node server.js
 ### Screenshots
 
 ### Author
-- Nicola Tuccari @gitHub: NicolaTuccari, Email: nicolatuccari@hotmail.it
+- Nicola Tuccari @gitHub: NicolaTuccari, Email: nicolatuccari@gmail.com
