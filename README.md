@@ -32,6 +32,9 @@ $ node server.js
 ```
 
 ### Screenshots
+![home](https://user-images.githubusercontent.com/37412739/39876211-e3c9e44e-5472-11e8-9136-feb832de2201.png)
+![game](https://user-images.githubusercontent.com/37412739/39876240-ee77b3f8-5472-11e8-96a2-e77b76d98ed3.png)
+![gamefinish](https://user-images.githubusercontent.com/37412739/39876246-f2423c6a-5472-11e8-8716-e8c1937848f5.png)
 
 ### Author
 - Nicola Tuccari @gitHub: NicolaTuccari, Email: nicolatuccari@gmail.com
