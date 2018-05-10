@@ -1,0 +1,197 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #212121 !important;
+  font-family: "Open Sans";
+}
+
+.btn.btn-default {
+    margin: 12px;
+    padding: 10px;
+    color: #fff;
+    background: #00ADB5;
+    border-radius: 8px;
+}
+
+.btn:hover {
+    background: #007c82;
+}
+
+.container-fluid {
+    padding:0;
+}
+
+
+/* LOGIN */
+
+.container-login {
+    width: 100%;
+    position: absolute;
+    top: 25%;
+    margin: auto;
+    padding: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    background: #212121;
+    display: block !important;
+}
+
+.container-login input{
+    margin: 6px;
+    border-radius: 6px;
+    border: 3px;
+    border-color: #ADD8E6;
+    background-color: #EEEEEE;
+    outline: none;
+}
+
+.container-login h3{
+    font-size: 38px;
+    margin:20px;
+    color: #00ADB5;
+}
+
+
+.container-login .username-input .serverip-input {
+    padding: 4px;
+}
+
+
+/*WAITING*/
+
+.waiting-screen{
+    display: none;
+}
+
+.loader {
+    position: absolute;
+    left: 47%;
+
+    border: 16px solid #EEEEEE;
+    border-top: 16px solid #00ADB5; 
+    border-bottom: 16px solid #00ADB5;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/*GAME*/
+
+
+.game-screen {
+	display: none;
+}
+
+.game-screen .chart {
+    position: absolute;
+    right:10%;
+    top:50%;
+    transform: translateY(-50%);
+    display: block;
+    color:white;
+    margin: 2px;
+    padding: 12px;
+}
+.game-screen .player{    
+    position: absolute;
+    left:15%;
+    top:50%;
+    transform: translateY(-50%);
+    display: block;
+    color:white;
+    margin: 2px;
+    padding: 12px;
+}
+
+.instruction{
+    position: absolute;
+    right:50%; 
+    transform: translateX(50%);
+    bottom: 0%;
+    color: #00ADB5;
+}
+#defaultCanvas0 {
+    display: none;
+    position:absolute;
+}
+
+#restart{
+    display:none;
+}
+
+.winner {
+    display: none;
+    position: absolute;
+    width: 250px;
+    height: 150px;
+    padding-top: 60px;
+    padding-left: 70;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translateX(-50%) translateY(-50%);
+    background: rgba(0, 173, 181, 0.9);
+    color: white;
+    border-radius: 6px;
+    z-index: 1;
+}
+
+.instruction figure {
+    display: inline-block;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.instruction figure figcaption{
+    text-align:center;
+}
+
+canvas{
+    border: 6px #333333 solid;
+    border-radius: 4px;
+}
+
+/*TABLE*/
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background: #fff;
+}
+
+th {
+    background-color: #00ADB5;
+    font-weight: bold;
+    color: #fff;
+    white-space: nowrap;
+}
+
+td, th {
+    padding: 1em 1.5em;
+    text-align: left;
+}
+
+tbody tr:nth-child(odd){
+    background-color: #777;
+    color:white;
+}
+
+tbody tr:nth-child(even){
+    background-color: #555;
+    color:white;
+}
+
+tbody tr:hover {
+    background-color: rgba(0,174,181,1);
+}
+
+td.rank {
+    text-transform: capitalize;
+}

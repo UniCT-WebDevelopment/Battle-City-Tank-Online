@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="./assets/css/style.css" rel="stylesheet" type="text/css">
+        <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <div class="container-fluid">
+
+            <div id="login-screen" class="login-screen active">
+                <div class="row container-login">
+                    <h3><b>Battle City Tank Online</b></h3><br>
+                    <input id="input-login" class="username-input" type="text" name="username" placeHolder="Username..." />
+                    <button id="btn-login" class="btn btn-default">Login</button>
+                </div>
+            </div>
+
+            <div id="waiting-screen" class="waiting-screen">
+                <div class="row container-login">
+                    <h3>Waiting other players...</h3>
+
+                    <div class="loader"> </div>
+                </div>
+            </div>
+
+            <div id="game-screen" class="game-screen">
+
+                <div id="restart" class="restart"><button id="btn-restart" class="btn btn-default"><b>Restart</b></button></div>
+                <div id="chart" class="chart"></div>
+                <div id="winner" class="winner"></div>
+                <div class="instruction">
+                    <figure>
+                        <img src="./assets/img/wasd.png" width="144" height="94"> 
+                        <figcaption>Move</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="./assets/img/bar.png" width="100" height="44"> 
+                        <figcaption>Attack</figcaption>
+                    </figure>
+
+                </div>
+            </div>
+
+        </div>
+        <script src="./assets/js/libraries/p5/p5.min.js"></script>
+        <script src="./assets/js/libraries/p5/addons/p5.dom.min.js"></script>
+        <script src="./assets/js/libraries/p5/addons/p5.sound.min.js"></script>
+        <script src="./assets/plugins/jQuery/jquery-3.3.1.min.js"></script>
+        <script src="./assets/plugins/socket_io/socket_io.js"></script>
+        <script src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+        <script src="./sketch.js"></script>
+        <script src="./assets/js/main.js"></script>
+    </body>
+</html>
