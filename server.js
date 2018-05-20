@@ -108,7 +108,7 @@ var Player = function(id, username, number){
             var b = Bullet(self.id);
             b.x = self.x;
             b.y = self.y;
-            io.sockets.emit("shot");
+            for(var i in PLAYERS_LOGGED) PLAYERS_LOGGED[i].sock.emit('shot');
 
             switch(self.attackDirection){
                 case "up": 
@@ -299,8 +299,8 @@ var Bullet = function(parent){
 
         if(player.hp <=0){
             player.life--;          
-            console.log(player.username + " lost a life"); 
-            io.sockets.emit("expl");
+            console.log(player.username + " lost a life");           
+            for(var i in PLAYERS_LOGGED) PLAYERS_LOGGED[i].sock.emit('expl');
             SOCKET_LIST[player.id].emit("lives", player.life); //Sending the number of lives to the killed player
          
             var parent = getPlayer(par);
@@ -324,7 +324,7 @@ var Bullet = function(parent){
 
     self.updatePoints = function(p){
         p.points++;
-        io.sockets.emit('chart', chartUpdate());
+        for(var i in PLAYERS_LOGGED) PLAYERS_LOGGED[i].sock.emit('chart', chartUpdate());
         console.log(p.username + " earned a point")
     }
 
@@ -337,6 +337,7 @@ var Bullet = function(parent){
                 delete Block.list[i];
                 self.toRemove = true;
                 io.sockets.emit('blocksPositions', Block.send());
+                for(let j in PLAYERS_LOGGED) PLAYERS_LOGGED[j].sock.emit('blocksPositions', Block.send());
             }
         }
 
@@ -419,20 +420,28 @@ var startGame = function(){
     end = false;
 
     blockInit();
-    io.sockets.emit("start",true);
-    io.sockets.emit('chart', chartUpdate());
-    io.sockets.emit('blocksPositions', Block.send());
-    io.sockets.emit('lives', 3);
+
+    for(var i in PLAYERS_LOGGED) {
+        PLAYERS_LOGGED[i].sock.emit('start',true);
+        PLAYERS_LOGGED[i].sock.emit('chart', chartUpdate());
+        PLAYERS_LOGGED[i].sock.emit('blocksPositions', Block.send());
+        PLAYERS_LOGGED[i].sock.emit('lives', 3);
+
+    }
 }
 
 var restartGame = function(){
     Player.restart(); 
     end = false;    
     blockInit();
-    io.sockets.emit('hide');
-    io.sockets.emit('chart', chartUpdate());
-    io.sockets.emit('blocksPositions', Block.send());
-    io.sockets.emit('lives', 3);
+
+    for(var i in PLAYERS_LOGGED) {
+        PLAYERS_LOGGED[i].sock.emit('hide');
+        PLAYERS_LOGGED[i].sock.emit('chart', chartUpdate());
+        PLAYERS_LOGGED[i].sock.emit('blocksPositions', Block.send());
+        PLAYERS_LOGGED[i].sock.emit('lives', 3);
+
+    }
 
 }
 
@@ -464,11 +473,23 @@ var sendWinner = function(){
         else return -1;
     })
 
-    if(chart.length===1) io.sockets.emit('winner', chart[0].username);
-    else if(chart[0].points>chart[1].points) io.sockets.emit('winner', chart[0].username);
-    else io.sockets.emit('winner', "draw");
+    console.log("ariprova");
 
-    if(PLAYERS_LOGGED.length===4) io.sockets.emit("showRestart");
+    if(PLAYERS_LOGGED.length===1){
+        console.log(chart[0].username);
+        for(var i in PLAYERS_LOGGED) PLAYERS_LOGGED[i].sock.emit('winner',chart[0].username);
+    }
+
+    else if(chart[0].points>chart[1].points) {  
+        for(var i in PLAYERS_LOGGED) PLAYERS_LOGGED[i].sock.emit('winner', chart[0].username);
+    }
+    else {
+        for(var i in PLAYERS_LOGGED) PLAYERS_LOGGED[i].sock.emit('winner', "draw");
+    }
+
+    if(PLAYERS_LOGGED.length===4) {
+        for(var i in PLAYERS_LOGGED) PLAYERS_LOGGED[i].sock.emit('showRestart');
+    }
 
 }
 
@@ -519,7 +540,11 @@ io.sockets.on('connection', function(socket){
                 if(PLAYERS_LOGGED.length===0) start = false; //With this we can make possible to start a new game after all logged players disconnects
             }
         }
-        if(end == true) io.sockets.emit('hide');
+
+        if(end == true) {
+            for(var i in PLAYERS_LOGGED) PLAYERS_LOGGED[i].sock.emit('hideRestart');
+        }
+
         delete SOCKET_LIST[socket.id];
     });
    
@@ -531,5 +556,7 @@ setInterval(function(){
         bullet:Bullet.update(),
     }
 
-    io.sockets.emit('newPositions',pack);
+    for(var i in PLAYERS_LOGGED){
+        PLAYERS_LOGGED[i].sock.emit('newPositions',pack);
+    }
 },1000/60);
