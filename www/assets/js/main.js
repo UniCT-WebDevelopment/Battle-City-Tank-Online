@@ -42,9 +42,14 @@ function win (data){
 	if(data=="draw") $('#winner').html("Draw");
 	else $('#winner').html(data + " wins");
 	$('#winner').show();
+	console.log(data);
 }
 
-function hideAfterRestart(){
+function hideRestart(){
+	$('#restart').hide();
+}
+
+function hide(){
 	$('#winner').hide();
 	$('#restart').hide();
 }
