@@ -65,7 +65,9 @@ function setup(){
 
 	socket.on("showRestart", showRestart) //Show the button to restart the game
 
-	socket.on("hide", hideAfterRestart) //Hides winner div and restart button
+	socket.on("hideRestart", hideRestart) // Hide restart button
+
+	socket.on("hide", hide) //Hides winner div and restart button
 }
 
 
